@@ -1,0 +1,66 @@
+1)compare two JSON have same properties without same order:
+
+let obj1 = {"name":"Sam","class":"MCA"};
+let obj2 = {"class":"MCA","name":"Sam"};
+
+var flag=true;
+
+if(Object.keys(obj1).length==Object.keys(obj2).length){
+    for(key in obj1) { 
+        if(obj1[key] == obj2[key]) {
+            continue;
+        }
+        else {
+            flag=false;
+            break;
+        }
+    }
+}
+else {
+    flag=false;
+}
+console.log("is object equal"+flag);
+----------------------------------------------------------
+
+2) display the country name,flags,region,sub-region:
+
+<html>
+  <head>
+    <title>XMLHttpRequest Example</title>
+  </head>
+  <body>
+    <script>
+     //Create a new XMLHttpRequest object
+      var xhr = new XMLHttpRequest();
+
+      //Define HTTP method and URL
+      var method = "GET";
+      var url = "https://restcountries.com/v3.1/all";
+
+      //Open the request
+      xhr.open(method, url);
+       xhr.onload = function () {
+        if (xhr.status === 200) {
+          //Request was successful
+          //console.log(xhr.responseText);
+          var countryDetails = JSON.parse(xhr.responseText);
+          for(var i=0;i<countryDetails .length;i++)
+          {
+            console.log(countryDetails[i].flags);
+	    console.log(countryDetails[i].region);
+console.log(countryDetails[i].population);
+console.log(countryDetails[i].subregion);
+        } 
+       }
+        else 
+         {
+          //Request failed
+          console.log("Request failed", xhr.status);
+        }
+      };
+
+      //send the request
+      xhr.send();
+    </script>
+  </body>
+</html>
